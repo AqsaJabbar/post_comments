@@ -1,0 +1,43 @@
+<%= form_for ([@post,@comment]), html: {id: "my_form"},remote: true, local: false do|f| %>
+    <p>
+      <div class="form-label"><%= f.label :comment %></div>
+      <div class="form-control"><%= f.text_field :comment , id: "input1"%><div>
+     
+      <%= f.hidden_field :user_id, value:current_user.id %>
+      <%= f.hidden_field :rating, value: '' , id: "my_rating"%>
+    </p>
+   <div>
+    <div class="rateyo"
+         data-rateyo-rating="1"
+         data-rateyo-num-stars="5"
+         data-rateyo-full-star="true">
+    </div>
+</div>
+    </div>
+    <p>
+      <button id="comment"><%= f.submit "Comment"%></button>
+    </p>
+  <% end %>
+
+  <script>
+
+
+  
+var r;
+$(function () {
+  $(".rateyo").rateYo().on("rateyo.change", function (e, data) {
+    r = data.rating;
+    document.getElementById('my_rating').value=r;
+    //$('my_rating').value=r
+   });
+   $("#comment").click(function(){
+    var body=$("#input1").val();
+    $.ajax({
+    type : 'POST',
+    url : '/posts/params[:post_id]/comments',
+    data: $('my_form').serialize()
+    
+    });
+});
+});
+</script>

@@ -1,0 +1,38 @@
+<%= form_for @post, url: path, method: method_type, local: true do |f| %>
+
+    <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@post.errors.count, "error") %> prohibited
+        this post from being saved:
+      </h2>
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    
+      <div class="form-label"><%= f.label :title %></div>
+     <div class="form-control" > <%= f.text_field :title %></div>
+    
+   
+    <div class="container">
+    <%= f.label :description %></div>
+      <%= f.rich_text_area :description %></div>
+    </div>
+    
+    <div class="form-label"><%= f.label :images %></div>
+    <div class="form-control"><%= f.file_field :images , multiple: true %></div>
+
+  <br />
+    <%= f.number_field :user_id,
+    value: current_user.id , type: :hidden%>
+  
+    
+      <div><%= f.submit %></div>
+    
+    
+  <% end %>

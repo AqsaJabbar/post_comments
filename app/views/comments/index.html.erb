@@ -1,0 +1,18 @@
+<h1>Listing Comments</h1>
+<%= link_to 'New Comment', new_post_comment_path %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+  </tr>
+ 
+  <% @comments.each do |c| %>
+    <tr>
+      <td><%= c.comment %></td>
+      
+      <td><%= link_to 'Show', post_comment_path(c.post_id,c.id)) %></td>
+      <td><%= link_to 'Edit', edit_post_comment_path(c.post_id,c.id) %></td>
+      <td><%= link_to 'Destroy', post_comment_path(c.post_id,c.id)), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,31 @@
+
+<table class="table">
+<thead class="thead-light">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Phone No</th>
+    <th scope="col">Address</th>
+    <th scope="col">Status</th>
+    <th scope="col">Role</th>
+  </tr>
+ </thead>
+ <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.firstname%></td>
+      <td><%= user.email %></td>
+      <td><%= user.phone %></td>
+      <td><%= user.address %></td>
+      <td><%= user.status %></td>
+      <td><%= user.role %></td>
+     <% if current_user.role == 'admin' %>
+      <td><button class="btn btn-light"><%= link_to 'Edit', edit_user_path(user) %></td></button>
+      <td><button class="btn btn-light"><%= link_to 'Delete', user_registration_path(id: user.id), data: { confirm: "Are you sure?" }, method: :delete  %></td>
+      <% end %>
+      <td><button class="btn btn-light"><%= link_to 'Show', user_path(user) %></td></button>
+    </tr>
+  <% end %>
+ <tbody>
+  </table>
+   <button class="btn btn-light"><%= link_to 'Back', root_path %></button>

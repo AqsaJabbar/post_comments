@@ -1,0 +1,15 @@
+<%if user_signed_in? %>
+<h3>Welcome <%= current_user.email%>
+</h3>
+<%else%>
+<h4>Login or Sign up to continue</h4>
+<%end%>
+<% if current_user %>
+<p>You are <%= current_user.role %></p>
+<p><%= current_user.id %></p></p>
+<p>Your status is <%= current_user.status %></p>
+
+<br/>
+<% end %>
+
+

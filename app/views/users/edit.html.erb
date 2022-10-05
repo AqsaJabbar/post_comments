@@ -1,0 +1,48 @@
+<h1>Edit User</h1>
+
+<%= form_for @user, local: true do |f| %>
+
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this user from being update:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div calss="mb-3">
+    
+  <div class="form-label"><%= f.label :firstname %></div>
+  <div class="form-control"><%= f.text_field :firstname, autofocus: true, autocomplete: "firstname"%></div>
+
+
+  
+    <div class="form-label"><%= f.label :email %></div>
+    <div class="form-control"><%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  
+    <div class="form-label"><%= f.label :phone%></div>
+    <div class="form-control"><%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
+
+  
+    <div class="form-label"><%= f.label :address%></div>
+    <div class="form-control"><%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+  </div>
+  <div class="form-control">
+  <%= f.select :status, ['active', 'pending','inactive'], autofocus: true, autocomplete: "status"%>
+  </div>
+  <div class="form-control">
+  <%= f.select :role, ['admin', 'user'], autofocus: true, autocomplete: "status"%>
+  </div>
+
+     <div class="btn btn-primary">
+    <%= f.submit "Update" %>
+  </div>
+  </div>
+  <% end %>

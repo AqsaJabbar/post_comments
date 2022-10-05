@@ -1,0 +1,43 @@
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+ 
+<p>
+  <strong>Description:</strong>
+  <%= @post.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @post.status %>
+</p>
+<p>
+  <strong>Images:</strong>
+  <% (0...@post.images.count).each do |image| %>
+    <%= image_tag(@post.images[image]) %>
+  <% end %></td>
+</p>
+<%
+=begin%>
+ <% if can? :create, @comment%> 
+<%
+=end%>
+<% if (@post.user_id != current_user.id) %>
+<%= render 'comments/form' %>
+<%end%>
+ <div>
+<%= render 'comments/comment'%>
+</div>
+ 
+ 
+
+
+
+
+
+
+
+
+

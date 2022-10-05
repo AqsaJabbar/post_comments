@@ -1,0 +1,16 @@
+
+<div id="comment_pane">
+<% @post.comments.each do |comment| %>
+    <%= comment.comment %>
+    <%= comment.user.email %>
+    <% comment.rating.to_i.times do  %>
+     <span style="color:yellow" class="glyphicon glyphicon-star"></span>
+<% end %>
+    <% comment.blank_stars.times do %>
+    <span class="glyphicon glyphicon-star-empty"></span>
+<% end %>
+    <button class="btn btn-light"><%= link_to "Delete" , post_comment_path(comment.post_id,comment.id),method: :delete, data: { confirm: 'Are you sure?' } %></button>
+    <button class="btn btn-light"><%= link_to "Edit" , edit_post_comment_path(comment.post_id,comment.id) %></button>
+    <br>
+<% end %>
+</div>
