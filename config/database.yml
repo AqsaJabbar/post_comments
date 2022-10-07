@@ -24,6 +24,7 @@ default: &default
 development:
   <<: *default
   database: testing_development
+  host: localhost
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -81,5 +82,4 @@ test:
 production:
   <<: *default
   database: testing_production
-  username: testing
-  password: <%= ENV['TESTING_DATABASE_PASSWORD'] %>
+  
